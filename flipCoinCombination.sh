@@ -1,6 +1,6 @@
 #!/bin/bash 
 read -p "How many Times you want to Flip the Coin:" Limit
-declare -A Doublet
+declare -A Triplet
 for (( i=0; i<Limit; i++ ))
 do
         num=$((RANDOM%8))
