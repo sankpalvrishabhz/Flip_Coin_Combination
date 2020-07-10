@@ -10,16 +10,16 @@ do
                 ((count_HH++))
         elif [[ $num -eq 1 ]]
         then
-	        Doublet[$i]=`echo HT`
+                Doublet[$i]=`echo HT`
                 ((count_HT++))
         elif [[ $num -eq 2 ]]
-	then
+        then
                 Doublet[$i]=`echo TH`
                 ((count_TH++))
-	else
+        else
                 Doublet[$i]=`echo TT`
                 ((count_TT++))
-	fi
+        fi
 done
 echo -e "\nDoublet Combination:\n"${Doublet[@]}
 echo -e "\nHH have been faced $count_HH times"
