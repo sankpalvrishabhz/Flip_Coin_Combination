@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -x
 read -p "How many Times you want to Flip the Coin:" Limit
 declare -A Triplet
 for (( i=0; i<Limit; i++ ))
@@ -31,7 +31,7 @@ do
         elif [[ $num -eq 6 ]]
         then
                 Triplet[$i]=`echo TTH`
-                ((count_TTH++))
+                ((count_TTH++))        
         else
                 Triplet[$i]=`echo TTT`
                 ((count_TTT++))
