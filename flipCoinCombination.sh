@@ -3,7 +3,7 @@ read -p "How many Times you want to Flip the Coin:" Limit
 declare -A Triplet
 for (( i=0; i<Limit; i++ ))
 do
-num=$((RANDOM%8))
+	num=$((RANDOM%8))
         if [[ $num -eq 0 ]]
         then
                 Triplet[$i]=`echo HHH`
