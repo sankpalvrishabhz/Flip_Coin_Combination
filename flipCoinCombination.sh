@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -x
 read -p "How many Times you want to Flip the Coin:" Limit
 declare -A Doublet
 for (( i=0; i<Limit; i++ ))
@@ -21,7 +21,7 @@ do
                 ((count_TT++))
 	fi
 done
-echo -e "\nSinglet Combination:\n"${Doublet[@]}
+echo -e "\nDoublet Combination:\n"${Doublet[@]}
 echo -e "\nHH have been faced $count_HH times"
 echo -e "\nHT have been faced $count_HT times"
 echo -e "\nTH have been faced $count_TH times"
