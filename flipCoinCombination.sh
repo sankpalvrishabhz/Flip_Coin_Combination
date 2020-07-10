@@ -6,35 +6,19 @@ do
         num=$((RANDOM%8))
         if [[ $num -eq 0 ]]
         then
-                Triplet[$i]=`echo HHH`
-                ((count_HHH++))
+                Doublet[$i]=`echo HH`
+                ((count_HH++))
         elif [[ $num -eq 1 ]]
         then
-                Triplet[$i]=`echo HHT`
-                ((count_HHT++))
+                Doublet[$i]=`echo HT`
+                ((count_HT++))
         elif [[ $num -eq 2 ]]
         then
-                Triplet[$i]=`echo HTH`
-                ((count_HTH++))
-        elif [[ $num -eq 3 ]]
-        then
-                Triplet[$i]=`echo THH`
-                ((count_THH++))
-        elif [[ $num -eq 4 ]]
-        then
-                Triplet[$i]=`echo HTT`
-                ((count_HTT++))
-        elif [[ $num -eq 5 ]]
-        then
-                Triplet[$i]=`echo THT`
-                ((count_THT++))
-        elif [[ $num -eq 6 ]]
-        then
-                Triplet[$i]=`echo TTH`
-                ((count_TTH++))
+                Doublet[$i]=`echo TH`
+                ((count_TH++))
         else
-                Triplet[$i]=`echo TTT`
-                ((count_TTT++))
+                Doublet[$i]=`echo TT`
+                ((count_TT++))
         fi
 done
 echo -e "\nDoublet Combination:\n"${Doublet[@]}
