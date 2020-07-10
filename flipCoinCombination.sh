@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -x
 read -p "How many Times you want to Flip the Coin:" Limit
 declare -A Doublet
 for (( i=0; i<Limit; i++ ))
@@ -37,20 +37,12 @@ do
                 ((count_TTT++))
         fi
 done
-echo -e "\nTriplet Combination:\n"${Triplet[@]}
-echo -e "\nHHH have been faced $count_HHH times"
-echo -e "\nHHT have been faced $count_HHT times"
-echo -e "\nHTH have been faced $count_HTH times"
-echo -e "\nTHH have been faced $count_THH times"
-echo -e "\nHTT have been faced $count_HTT times"
-echo -e "\nTHt have been faced $count_THT times"
-echo -e "\nTTH have been faced $count_TTH times"
-echo -e "\nTTT have been faced $count_TTT times"
-echo -e "\nHHH Percent=" $(($count_HHH*100/$Limit))
-echo -e "\nHHT Percent=" $(($count_HHT*100/$Limit))
-echo -e "\nHTH Percent=" $(($count_HTH*100/$Limit))
-echo -e "\nTHH Percent=" $(($count_THH*100/$Limit))
-echo -e "\nHTT Percent=" $(($count_HTT*100/$Limit))
-echo -e "\nTHT Percent=" $(($count_THT*100/$Limit))
-echo -e "\nTHH Percent=" $(($count_TTH*100/$Limit))
-echo -e "\nTTT Percent=" $(($count_TTT*100/$Limit))
+echo -e "\nDoublet Combination:\n"${Doublet[@]}
+echo -e "\nHH have been faced $count_HH times"
+echo -e "\nHT have been faced $count_HT times"
+echo -e "\nTH have been faced $count_TH times"
+echo -e "\nTT have been faced $count_TT times"
+echo -e "\nHH Percent=" $(($count_HH*100/$Limit))
+echo -e "\nHT Percent=" $(($count_HT*100/$Limit))
+echo -e "\nTH Percent=" $(($count_TH*100/$Limit))
+echo -e "\nTT Percent=" $(($count_TT*100/$Limit))
