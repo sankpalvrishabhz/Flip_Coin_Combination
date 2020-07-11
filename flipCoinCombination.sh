@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 read -p "How many Times you want to Flip the Coin:" Limit
 declare -A Singlet
 declare -A Doublet
@@ -6,33 +6,54 @@ declare -A Triplet
 declare -A Percent
 for (( i=0; i<Limit; i++ ))
 do
-        num=$((RANDOM%8))
+        num=$((RANDOM%2))
         if [[ $num -eq 0 ]]
         then
                 Singlet[$i]=`echo H`
                 ((count_H++))
+        else
+                Singlet[$i]=`echo T`
+                ((count_T++))
+        fi
+done
+for (( i=0; i<Limit; i++ ))
+do
+        num=$((RANDOM%4))
+        if [[ $num -eq 0 ]]
+        then
                 Doublet[$i]=`echo HH`
                 ((count_HH++))
+        elif [[ $num -eq 1 ]]
+        then
+                Doublet[$i]=`echo HT`
+                ((count_HT++))
+
+        elif [[ $num -eq 2 ]]
+        then
+                Doublet[$i]=`echo TH`
+                ((count_TH++))
+        else
+                Doublet[$i]=`echo TT`
+                ((count_TT++))
+        fi
+done
+for (( i=0; i<Limit; i++ ))
+do
+        num=$((RANDOM%8))
+        if [[ $num -eq 0 ]]
+        then
                 Triplet[$i]=`echo HHH`
                 ((count_HHH++))
         elif [[ $num -eq 1 ]]
         then
-                Singlet[$i]=`echo T`
-                ((count_T++))
-                Doublet[$i]=`echo TH`
-                ((count_TH++))
                 Triplet[$i]=`echo HHT`
                 ((count_HHT++))
         elif [[ $num -eq 2 ]]
-        then
-                Doublet[$i]=`echo HT`
-                ((count_HT++))
+	then
                 Triplet[$i]=`echo HTH`
                 ((count_HTH++))
         elif [[ $num -eq 3 ]]
         then
-                Doublet[$i]=`echo TT`
-                ((count_TT++))
                 Triplet[$i]=`echo THH`
                 ((count_THH++))
         elif [[ $num -eq 4 ]]
@@ -43,15 +64,16 @@ do
         then
                 Triplet[$i]=`echo THT`
                 ((count_THT++))
-	elif [[ $num -eq 6 ]]
+        elif [[ $num -eq 6 ]]
         then
                 Triplet[$i]=`echo TTH`
-                ((count_TTH++))        
+                ((count_TTH++))
         else
                 Triplet[$i]=`echo TTT`
                 ((count_TTT++))
         fi
 done
+
 echo -e "\nSinglet Directory:\n"${Singlet[@]}
 echo -e "\nH have been faced $count_H times"
 echo -e "T have been faced $count_T times\n"
@@ -63,6 +85,7 @@ echo -e "\nHH have been faced $count_HH times"
 echo "HT have been faced $count_HT times"
 echo "TH have been faced $count_TH times"
 echo -e "TT have been faced $count_TT times\n"
+
 echo "HH Percentage:" $(($count_HH*100/$Limit))
 echo "HT Percentage:" $(($count_HT*100/$Limit))
 echo "TH Percentage:" $(($count_TH*100/$Limit))
@@ -77,6 +100,7 @@ echo "HTT have been faced $count_HTT times"
 echo "THt have been faced $count_THT times"
 echo "TTH have been faced $count_TTH times"
 echo -e "TTT have been faced $count_TTT times\n"
+
 echo "HHH Percentage:" $(($count_HHH*100/$Limit))
 echo "HHT Percentage:" $(($count_HHT*100/$Limit))
 echo "HTH Percentage:" $(($count_HTH*100/$Limit))
@@ -102,6 +126,12 @@ Percent[THH]=$(($count_TTH*100/$Limit))
 Percent[TTT]=$(($count_TTT*100/$Limit))
 
 echo -e "\nSorted Percentage:\n"
-echo ${Percent[@]} | tr " " "\n" | sort -nr
-echo -e "\nPercentage Key:"
-echo ${!Percent[@]}
+echo ${Percent[@]} | tr " " "\n" | sort -n
+
+IFS=$'\n' Sorted=($(sort -nr <<<"${Percent[*]}"))
+unset IFS
+for i in "${!Percent[@]}"
+do
+        [[ ${Sorted[0]} -ne ${Percent[$i]} ]] && continue
+        echo -e "\nWining Combination: $i"
+done
